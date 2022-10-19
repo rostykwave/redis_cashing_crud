@@ -4,9 +4,14 @@ import * as redisStore from 'cache-manager-redis-store';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RedisToSqlModule } from './redis-to-sql/redis-to-sql.module';
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AppDataSource } from 'ormconfig';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
+    TypeOrmModule.forRoot(AppDataSource.options),
     CacheModule.register({
       isGlobal: true,
       store: redisStore,
