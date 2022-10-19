@@ -1,4 +1,12 @@
-import { CacheKey, CacheTTL, Controller, Get, Post } from '@nestjs/common';
+import {
+  CacheKey,
+  CacheTTL,
+  Controller,
+  Get,
+  Post,
+  Param,
+  ParseIntPipe,
+} from '@nestjs/common';
 import { RedisToSqlService } from './redis-to-sql.service';
 
 @Controller('redis-to-sql')
@@ -10,10 +18,10 @@ export class RedisToSqlController {
     return this.redisToSqlService.saveToSQL();
   }
 
-  @CacheKey('cacheManagerKey')
+  @CacheKey('redisRestored')
   @CacheTTL(20)
-  @Get()
-  getRedisDataFromSQL() {
-    return this.redisToSqlService.getFromSQL();
+  @Get(':id')
+  getRedisDataFromSQL(@Param('id', ParseIntPipe) id: number) {
+    return this.redisToSqlService.getFromSQL(id);
   }
 }
