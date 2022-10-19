@@ -12,6 +12,8 @@ import { AppService } from './app.service';
         host: 'localhost',
         port: 6379,
       },
+      // ttl: 50,
+      max: 10,
     }),
   ],
   controllers: [AppController],
