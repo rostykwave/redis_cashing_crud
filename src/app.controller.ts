@@ -8,15 +8,12 @@ import {
   Delete,
   Body,
   Param,
-  // UseInterceptors,
-  // CacheInterceptor,
 } from '@nestjs/common';
 import { AppService } from './app.service';
 import { CreateDto } from './dto/create.dto';
 import { UpdateDto } from './dto/update.dto';
 
-// @UseInterceptors(CacheInterceptor)
-@Controller()
+@Controller('redis')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
