@@ -19,7 +19,7 @@ import { AppDataSource } from 'ormconfig';
         host: 'localhost',
         port: 6379,
       },
-      // ttl: 50,
+      ttl: 10,
       max: 10,
     }),
     RedisToSqlModule,
