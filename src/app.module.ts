@@ -7,6 +7,8 @@ import { RedisToSqlModule } from './redis-to-sql/redis-to-sql.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppDataSource } from 'ormconfig';
+import { FileUploadModule } from './file-upload/file-upload.module';
+import { EMailModule } from './email/email.module';
 
 @Module({
   imports: [
@@ -23,6 +25,8 @@ import { AppDataSource } from 'ormconfig';
       max: 10,
     }),
     RedisToSqlModule,
+    FileUploadModule,
+    EMailModule,
   ],
   controllers: [AppController],
   providers: [
