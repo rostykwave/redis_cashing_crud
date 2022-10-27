@@ -7,10 +7,12 @@ import { RedisToSqlModule } from './redis-to-sql/redis-to-sql.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppDataSource } from 'ormconfig';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
+    ScheduleModule.forRoot(),
     TypeOrmModule.forRoot(AppDataSource.options),
     CacheModule.register({
       isGlobal: true,
