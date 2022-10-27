@@ -1,14 +1,13 @@
 import {
   Controller,
   Post,
-  Body,
   UseInterceptors,
   UploadedFile,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { FileUploadService } from './file-upload.service';
 import { Express } from 'express';
 import { diskStorage } from 'multer';
+import { FileUploadService } from './file-upload.service';
 import { editFileName, imageFileFilter } from './utils/file-uploading.utils';
 
 @Controller('file-upload')
@@ -30,6 +29,7 @@ export class FileUploadController {
       originalname: file.originalname,
       filename: file.filename,
     };
+    this.fileUploadService.sendFileToEmail(file.filename);
     return response;
   }
 }
