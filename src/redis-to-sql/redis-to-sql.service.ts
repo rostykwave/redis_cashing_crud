@@ -3,6 +3,7 @@ import { Cache } from 'cache-manager';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { RedisToSQLEntity } from './redis-to-sql.entity';
+import { Cron } from '@nestjs/schedule';
 
 @Injectable()
 export class RedisToSqlService {
@@ -12,6 +13,7 @@ export class RedisToSqlService {
     private readonly accountRepository: Repository<RedisToSQLEntity>,
   ) {}
 
+  @Cron('* * 01 * * *')
   async saveToSQL() {
     const keys = await this.cacheManager.store.keys('*');
 
